@@ -1,0 +1,64 @@
+
+    <a href = "http://makaan.com/<%= item.listing.resaleURL %>">
+    <div class = "card">
+            <div class = "card-image">
+                <img src = "<%= item.listing.mainImageURL %>">
+                <div class = "image-offset">
+                    <div class = "agent-image">
+                        <% if(item.listing.companySeller.user.profilePictureURL){ %>
+                            <img src = "<%= item.listing.companySeller.user.profilePictureURL %>">
+                        <% }else{ %>
+                            <img src = "http://afsti.org/event_photos/default.png">
+                        <% } %>
+                    </div>
+                    <div class = "agent-info">
+                        <div class = "agent-name">
+                            <%= item.listing.companySeller.user.fullName %>
+                        </div>
+                        <div class = "agent-type">
+                                AGENT
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "card-content">
+                    <div class = "heading">
+                        <% if(item.listing.property.bedrooms != 0){ %>
+                            <%= item.listing.property.bedrooms %> BHK <%= item.listing.property.unitType %>
+                        <% }else{ %>
+                            Residential <%= item.listing.property.unitType %>
+                        <% } %>
+                    </div>
+                    <div class = "address">
+                            <%= item.listing.property.project.locality.label %>, <%= item.listing.property.project.locality.suburb.city.label %>
+                    </div>
+                    <hr class = "card-separator">
+                    <div class = "card-options">
+                            <div class = "price">
+                                70.5 Cr
+                            </div> 
+                            <div class = "size">
+                                    <%= item.listing.property.size %>
+                            </div> 
+                            <div class = "status">
+                                <%= item.listing.listingCategory %>
+                            </div> 
+                            <div class = "href">
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                            </div> 
+                    </div>
+                    <hr class = "card-separator">     
+                    <div class = "options">
+                            <%= item.listing.property.bedrooms %> Bathrooms | <span class = "condition">
+                                    New
+                                </span>
+                                <div class = "advert">
+                                        <%= item.listing.description.substr(0, 70) %>...<span class = "link">More</span>
+                                </div>
+                    </div>
+            </div>
+            
+        </div>
+</a>        
+        
+

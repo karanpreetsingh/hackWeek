@@ -1,0 +1,65 @@
+<div class = "item-left">
+    <div class = "item">
+        Filters <span class = "icon"><i class = "fa fa-angle-right"></i></span>
+    </div>
+    <div class = "item bedroom-filter">
+        Bedrooms <span class = "icon"><i class = "fa fa-angle-down"></i></span>
+        <div class = "dropdown-bedroom-filter visible">
+            <div class = "dropdown-item"><a href = "#" id = "one">1 BHK</a></div>
+            <div class = "dropdown-item"><a href = "#" id = "two">2 BHK</a></div>
+            <div class = "dropdown-item"><a href = "#" id = "three">3 BHK</a></div>
+            <div class = "dropdown-item"><a href = "#" id = "four">3+ BHK</a></div>
+        </div>
+    </div>
+</div>
+
+<div class = "item-right sort">
+    <span class = "icon"><i class = "fa fa-arrow-down"></i></span> Sort by
+    <div class = "dropdown-sort-filter visible">
+        <div class = "dropdown-item"><a id = "asc" href = "#">Price: Low to High</a></div>
+        <div class = "dropdown-item"><a id = "desc" href = "#">Price: High to Low</a></div>
+    </div>
+</div>
+
+<script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    
+    url = window.location.href.split('?')[0] + '?page=1&sorted=ASC';
+    if(getParameterByName('rental')){
+        url += '&rental=true';   
+    }
+    if(getParameterByName('bhk')){
+        url = url + '&bhk=' + getParameterByName('bhk');
+    }
+    document.getElementById('asc').setAttribute('href', url);
+    url = window.location.href.split('?')[0] + '?page=1&sorted=DESC';
+    if(getParameterByName('rental')){
+        url += '&rental=true';   
+    }
+    if(getParameterByName('bhk')){
+        url = url + '&bhk=' + getParameterByName('bhk');
+    }
+    document.getElementById('desc').setAttribute('href', url);
+    
+    
+
+    url = window.location.href.split('?')[0] + '?page=1';
+    if(getParameterByName('rental')){
+        url += '&rental=true';
+    }
+    
+    document.getElementById('one').setAttribute('href', url+'&bhk=1')
+    document.getElementById('two').setAttribute('href', url+'&bhk=2')
+    document.getElementById('three').setAttribute('href', url+'&bhk=3')
+    document.getElementById('four').setAttribute('href', url+'&bhk=4')
+    
+
+</script>

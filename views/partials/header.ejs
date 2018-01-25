@@ -8,15 +8,15 @@
         <i class = "fa fa-angle-down"></i>
     </span>
     <div class = "dropdown visible">
-        <div class = "dropdown-item buy selected"><a href = "/results?page=1">Buy</a></div>
-        <div class = "dropdown-item rent"><a href = "/results?page=1&rental=true">Rent</a></div>
+        <div class = "dropdown-item buy selected"><a id = "buy" href = "/results?page=1">Buy</a></div>
+        <div class = "dropdown-item rent"><a id = "rent" href = "/results?page=1&rental=true">Rent</a></div>
     </div>
 </div>
 
 <div class = "heading-item input">
-    <form mathod = "POST" action = "search">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <input type = "text" class = "search" placeholder="Search here">
+    <form method = "POST" action = "search">
+        <input type = "text" class = "search" name = "search" placeholder="Search here">
+        <button type = "submit"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
 </div>
 
@@ -25,7 +25,7 @@
         <i class="fa fa-mobile" aria-hidden="true"></i>
     </span>
     <span class = "content">
-        Download App
+        <a href = "https://www.makaan.com/download-mobileapp">Download App</a>
     </span>
 </div>
 
@@ -39,6 +39,9 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+
+    document.getElementById('buy').setAttribute('href', '/results?page=1&city=' + getParameterByName('city'));
+    document.getElementById('rent').setAttribute('href', '/results?page=1&rental=true&city=' + getParameterByName('city'));
 
     let param = getParameterByName('rental');
     if(param){

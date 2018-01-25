@@ -25,6 +25,10 @@ $('.sort').click(function(){
     $('.dropdown-sort-filter').toggleClass('visible');
 });
 
+$('.budget').click(function(){
+    $('.dropdown-budget-filter').toggleClass('visible');
+});
+
 $('.results').click(function(){
     $('.dropdown').addClass('visible');
     $('.dropdown-bedroom-filter').addClass('visible');
@@ -41,3 +45,8 @@ position = $('.sort').position();
 $('.dropdown-sort-filter').css('position', 'absolute');
 $('.dropdown-sort-filter').css('top', 49);
 $('.dropdown-sort-filter').css('left', position.left);
+
+position = $('.budget').position();
+$('.dropdown-budget-filter').css('position', 'absolute');
+$('.dropdown-budget-filter').css('top', 49);
+$('.dropdown-budget-filter').css('left', position.left);

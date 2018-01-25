@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-.result-content{
-    border-right: 1px solid #ecf0f1; 
-    flex-direction: column;
-    background-color: #fff;
-    z-index: -1;
-    display: flex;
-    position: absolute;
-    top: 50px;
-    flex: 2;
-}
-
 body{
     background-color: #f7f7f7;
     font-family: 'Open Sans', sans-serif;
@@ -37,6 +26,14 @@ body{
     font-size: 14px;
 }
 
+.logo{
+    padding: 0 20px;
+}
+
+.logo img{
+    transform: translate(0, -5px);
+}
+
 .buy-filter{
     padding: 0 30px;
     cursor: pointer;
@@ -49,14 +46,6 @@ body{
 .buy-filter .icon{
     padding: 0 0 0 5px;
     color: #F62459;
-}
-
-.logo{
-    padding: 0 20px;
-}
-
-.logo img{
-    transform: translate(0, -5px);
 }
 
 .input{
@@ -78,17 +67,23 @@ body{
 .app .icon{
     font-size: 40px;
     padding: 0 5px 0 0;
+    color: #F62459;
 }
-
 
 .content{
     display: flex;
 }
 
-.sidebar{
-    flex: 1;
+.result-content{
+    border-right: 1px solid #ecf0f1; 
+    flex-direction: column;
+    background-color: #fff;
+    z-index: -1;
+    /* display: flex; */
+    position: absolute;
+    top: 50px;
+    width: 850px;
 }
-
 
 .results{
     display: flex;
@@ -100,7 +95,7 @@ body{
 
 .card{
     display: flex;
-    width: 90%;
+    width: 700px;
     padding: 20px;
     margin: 20px;
     box-sizing: content-box;
@@ -156,14 +151,38 @@ body{
 
 .card-options .price{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-sidekick{
+    padding: 5px 0 0 0;
+    font-size: 12px;
+    color: #BDC3C7;
 }
 
 .card-options .size{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.size-sidekick{
+    padding: 5px 0 0 0;
+    font-size: 12px;
+    color: #BDC3C7;
 }
 
 .card-options .status{
     flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.status-sidekick{
+    padding: 5px 0 0 0;
+    font-size: 12px;
+    color: #BDC3C7;
 }
 
 .options{
@@ -209,7 +228,6 @@ body{
     z-index: 2;
     align-items: center;
     position: fixed;
-    width: 100%;
 }
 
 
@@ -266,15 +284,49 @@ a{
     cursor: pointer;
 }
 
+.contact{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.default {
+    cursor: pointer;
+    border: 2px solid #F62459;
+    border-radius: 40px;
+    padding: 10px;
+    color: #F62459;
+    text-align: center;
+    text-overflow: clip;
+    letter-spacing: 1px;
+    background: rgba(0,0,0,0);
+    transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  }
+  
+  .default:hover {
+    color: rgba(255,255,255,1);
+    background: #F62459;
+  }
+  
+
 .item-left{
     display: flex;
 }
+
 .item-right .icon{
     color: #F62459;
     padding: 0 10px;
 }
 
 .dropdown-bedroom-filter{
+    position: absolute;
+    top: 50px;
+    border: 1px solid #ecf0f1;
+    left: 161px;
+    padding: 10px 40px;
+    background-color: #fff;
+}
+
+.dropdown-budget-filter{
     position: absolute;
     top: 50px;
     border: 1px solid #ecf0f1;
@@ -304,4 +356,93 @@ a{
 
 .active{
     border-bottom: 2px solid #F62459
+}
+
+@media screen and (max-width : 600px) {
+    /* Styles */
+
+    .sidebar{
+        display: none;
+    }
+
+    .card{
+        display: flex;
+        width: 260px;
+        padding: 20px;
+        margin: 20px;
+        justify-content: center;
+        box-sizing: content-box;
+        flex-direction: column;
+    }
+
+    .size-sidekick{
+        font-size: 8px;
+    }
+
+    .result-content{
+        width: 450px;
+    }
+
+
+    .price-sidekick{
+        font-size: 8px;
+    }
+
+    .status-sidekick{
+        font-size: 8px;
+    }
+    .card-content .card-separator{
+        width: 240px;
+    }
+    .app{
+        display: none;
+    }
+    .search{
+        width: 100px;
+    }
+}
+
+
+@media screen and (min-width: 601px) and (max-width : 830px) {
+    /* Styles */
+
+    .sidebar{
+        display: none;
+    }
+
+    .card{
+        display: flex;
+        width: 460px;
+        padding: 20px;
+        margin: 20px;
+        justify-content: center;
+        box-sizing: content-box;
+        flex-direction: row;
+    }
+
+    .size-sidekick{
+        font-size: 8px;
+    }
+
+    .result-content{
+        width: 600px;
+    }
+
+
+    .price-sidekick{
+        font-size: 8px;
+    }
+
+    .status-sidekick{
+        font-size: 8px;
+    }
+    .card-content .card-separator{
+        width: 240px;
+    }
+    .app{
+        display: none;
+    }
+    .search{
+        width: 200px;
+    }
 }

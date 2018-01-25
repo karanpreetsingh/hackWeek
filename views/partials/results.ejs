@@ -1,7 +1,17 @@
 
+    <% function convert(value){ 
+        value = value.toString();
+        if(value.length == 6) return value.substr(0, 1) + '.' + value.substr(1, 1) + 'L';
+        else if(value.length == 7) return value.substr(0, 2) + '.' + value.substr(2, 1) + 'L';
+        else if(value.length == 8) return value.substr(0, 1) + '.' + value.substr(2, 1) + 'Cr';
+        else if(value.length >= 9) return value.substr(0, 2) + '.' + value.substr(2, 1) + 'Cr';
+        return value;
+     } %>
+
     <a href = "http://makaan.com/<%= item.listing.resaleURL %>">
     <div class = "card">
             <div class = "card-image">
+                
                 <img src = "<%= item.listing.mainImageURL %>">
                 <div class = "image-offset">
                     <div class = "agent-image">
@@ -35,13 +45,22 @@
                     <hr class = "card-separator">
                     <div class = "card-options">
                             <div class = "price">
-                                70.5 Cr
+                                    ₹​ <%= convert(item.listing.currentListingPrice.price) %>
+                                <div class = "price-sidekick">
+                                    <%= item.listing.currentListingPrice.pricePerUnitArea %> / sq feet
+                                </div>
                             </div> 
                             <div class = "size">
                                     <%= item.listing.property.size %>
+                                    <div class = "size-sidekick">
+                                            Area in sq feet
+                                        </div>
                             </div> 
                             <div class = "status">
                                 <%= item.listing.listingCategory %>
+                                <div class = "status-sidekick">
+                                        Listing Category
+                                    </div>
                             </div> 
                             <div class = "href">
                                     <i class="fa fa-link" aria-hidden="true"></i>
@@ -55,6 +74,9 @@
                                 <div class = "advert">
                                         <%= item.listing.description.substr(0, 70) %>...<span class = "link">More</span>
                                 </div>
+                    </div>
+                    <div class = "contact">
+                        <button class = "default">Contact Seller</button>
                     </div>
             </div>
             

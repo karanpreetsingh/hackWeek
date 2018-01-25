@@ -1,8 +1,23 @@
-<span class = "page">Prev</span>
-<span class = "page active">1</span>
-<span class = "page">2</span>
-<span class = "page">3</span>
-<span class = "page">4</span>
-<span class = "page">5</span>
-<span class = "page">...</span>
-<span class = "page">Next</span>
+<% for(let i = 1; i <= 10; i++){ %>
+    <a class = "page" href = "#"><%= i %></a>
+<% } %>
+<script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    for(let i = 1; i <= 10; i++){
+        let v = (window.location.href).indexOf('page') + 5;
+        let url = window.location.href.substr(0, v) + i + window.location.href.substr(v+1, window.location.href.length);
+        document.getElementsByClassName('page')[i-1].setAttribute('href', url);
+        if(i == getParameterByName('page')){
+            document.getElementsByClassName('page')[i-1].classList.add('active');
+        }
+    }
+</script>
+

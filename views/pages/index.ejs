@@ -18,7 +18,7 @@
                 <% include ../partials/filters %>
         </div>
         <div class = "results">
-                <div class = "count"><b><%= data.totalCount %></b> Properties in Gurgaon</div>
+                <div class = "count"><b><%= data.totalCount %></b> Properties in <%= data.facetedResponse.items[0].listing.property.project.locality.suburb.city.label   %></div>
                 <% data.facetedResponse.items.forEach((item) => { %>
                     <% include ../partials/results %>
                 <% })%>
@@ -26,9 +26,6 @@
                     <% include ../partials/pagination %>
                 </div>
         </div>
-    </div>
-    <div class = "sidebar">
-            <% include ../partials/sidebar %>
     </div>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src = "script.js"></script>

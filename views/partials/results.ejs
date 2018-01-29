@@ -1,10 +1,10 @@
 
     <% function convert(value){ 
         value = value.toString();
-        if(value.length == 6) return value.substr(0, 1) + '.' + value.substr(1, 1) + 'L';
-        else if(value.length == 7) return value.substr(0, 2) + '.' + value.substr(2, 1) + 'L';
-        else if(value.length == 8) return value.substr(0, 1) + '.' + value.substr(2, 1) + 'Cr';
-        else if(value.length >= 9) return value.substr(0, 2) + '.' + value.substr(2, 1) + 'Cr';
+        if(value.length == 6) return value.substr(0, 1) + '.' + value.substr(1, 1) + ' L';
+        else if(value.length == 7) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' L';
+        else if(value.length == 8) return value.substr(0, 1) + '.' + value.substr(2, 1) + ' Cr';
+        else if(value.length >= 9) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' Cr';
         return value;
      } %>
 

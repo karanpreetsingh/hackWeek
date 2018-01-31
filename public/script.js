@@ -18,6 +18,10 @@ $('.search').blur(function(){
 })
 
 $('.bedroom-filter').click(function(){
+    let position = $('.bedroom-filter').position();
+$('.dropdown-bedroom-filter').css('top', 49);
+$('.dropdown-bedroom-filter').css('left', position.left);
+
     $('.dropdown-bedroom-filter').toggleClass('visible');
 });
 
@@ -31,6 +35,11 @@ $('.sort').click(function(){
 });
 
 $('.budget').click(function(){
+    position = $('.budget').position();
+    $('.dropdown-budget-filter').css('position', 'absolute');
+    $('.dropdown-budget-filter').css('top', 49);
+    $('.dropdown-budget-filter').css('left', position.left);
+
     $('.dropdown-budget-filter').toggleClass('visible');
 });
 
@@ -40,14 +49,7 @@ $('.results').click(function(){
     $('.dropdown-sort-filter').addClass('visible');
 })
 
-let position = $('.bedroom-filter').position();
-$('.dropdown-bedroom-filter').css('top', 49);
-$('.dropdown-bedroom-filter').css('left', position.left);
 
-position = $('.budget').position();
-$('.dropdown-budget-filter').css('position', 'absolute');
-$('.dropdown-budget-filter').css('top', 49);
-$('.dropdown-budget-filter').css('left', position.left);
 
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -64,6 +66,10 @@ if(getParameterByName('sorted') == "ASC"){
     sortCat.innerHTML = "Price: Low to High";
 }else if(getParameterByName('sorted') == "DESC"){
     sortCat.innerHTML = "Price: High to Low";
+}else if(getParameterByName('sorted') == "POP"){
+    sortCat.innerHTML = "Popularity";
+}else if(getParameterByName('sorted') == "RAT"){
+    sortCat.innerHTML = "Seller Rating";
 }else{
     sortCat.innerHTML = "Relevance";
 }
@@ -95,6 +101,10 @@ body = '';
 
     if(getParameterByName('toPrice')){
         body += '<span class = "filter-item">' + 'Budget: Maximum' + ': '+ getParameterByName('toPrice') + '<a href = "/filter?remove=toPrice"><i class="fa fa-times" aria-hidden="true"></i></a></span>';    
+    }
+
+    if(getParameterByName('fromPrice')){
+        body += '<span class = "filter-item">' + 'Budget: Minimum' + ': '+ getParameterByName('fromPrice') + '<a href = "/filter?remove=fromPrice"><i class="fa fa-times" aria-hidden="true"></i></a></span>';    
     }
 
     document.getElementById('main').innerHTML = body;

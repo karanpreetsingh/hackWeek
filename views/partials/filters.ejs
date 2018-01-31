@@ -14,10 +14,20 @@
     <div class = "item budget">
             Budget <span class = "icon"><i class = "fa fa-angle-down"></i></span>
             <div class = "dropdown-budget-filter visible">
-                <div class = "dropdown-item"><a href = "/filter?toBudget=100000" id = "price2">₹ 1,00,000</a></div>
-                <div class = "dropdown-item"><a href = "/filter?toBudget=1000000" id = "price3">₹ 10,00,000</a></div>
-                <div class = "dropdown-item"><a href = "/filter?toBudget=10000000" id = "price4">₹ 1,00,00,000</a></div>
-                <div class = "dropdown-item"><a href = "/filter?toBudget=100000000" id = "price5">₹ 10,00,00,000</a></div>
+                <div class = "col">
+                    <div class = "dropdown-item"><b>From</b></div>
+                    <div class = "dropdown-item"><a href = "/filter?fromBudget=100000" id = "price2">₹ 1,00,000</a></div>
+                    <div class = "dropdown-item"><a href = "/filter?fromBudget=1000000" id = "price3">₹ 10,00,000</a></div>
+                    <div class = "dropdown-item"><a href = "/filter?fromBudget=10000000" id = "price4">₹ 1,00,00,000</a></div>
+                    <div class = "dropdown-item"><a href = "/filter?fromBudget=100000000" id = "price5">₹ 10,00,00,000</a></div>
+                </div>
+                <div class = "col">
+                        <div class = "dropdown-item"><b>To</b></div>
+                        <div class = "dropdown-item"><a href = "/filter?toBudget=100000" id = "price2">₹ 1,00,000</a></div>
+                        <div class = "dropdown-item"><a href = "/filter?toBudget=1000000" id = "price3">₹ 10,00,000</a></div>
+                        <div class = "dropdown-item"><a href = "/filter?toBudget=10000000" id = "price4">₹ 1,00,00,000</a></div>
+                        <div class = "dropdown-item"><a href = "/filter?toBudget=100000000" id = "price5">₹ 10,00,00,000</a></div>
+                    </div>
             </div>
     </div>
     <div class = "item resetClass">
@@ -31,5 +41,7 @@
         <div class = "dropdown-item"><a id = "relevance" href = "/filter?sorted=REL">Relevance</a></div>
         <div class = "dropdown-item"><a id = "asc" href = "/filter?sorted=ASC">Price: Low to High</a></div>
         <div class = "dropdown-item"><a id = "desc" href = "/filter?sorted=DESC">Price: High to Low</a></div>
+        <div class = "dropdown-item"><a id = "popularity" href = "/filter?sorted=POP">Popularity</a></div>
+        <div class = "dropdown-item"><a id = "rating" href = "/filter?sorted=RAT">Seller Rating</a></div>
     </div>
 </div>

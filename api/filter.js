@@ -5,6 +5,7 @@ module.exports = function(app){
         city : 11,
         sort : null,
         bhks : [],
+        formBudget : null,
         toBudget : null,
         sort : null,
         listing : 1,
@@ -16,6 +17,7 @@ module.exports = function(app){
         if(queryData.remove){
             if(queryData.remove == 'bhks') filter.bhks = [];
             else if(queryData.remove == 'toPrice') filter.toBudget = null;
+            else if(queryData.remove == 'fromPrice') filter.fromBudget = null;
             else if(queryData.remove == 'all'){
                 filter.toBudget = null;
                 filter.sort = null;
@@ -38,10 +40,16 @@ module.exports = function(app){
             filter.sort = 'DESC';
         }else if(queryData.sorted == 'REL'){
             filter.sort = null;
+        }else if(queryData.sorted == 'POP'){
+            filter.sort = 'POP';
+        }else if(queryData.sorted == 'RAT'){
+            filter.sort = 'RAT';
         }else if(queryData.bhk){
             filter.bhks.push(queryData.bhk);
         }else if(queryData.toBudget){
             filter.toBudget = queryData.toBudget;
+        }else if(queryData.fromBudget){
+            filter.fromBudget = queryData.fromBudget;
         }
 
         if(filter.listing == 2){
@@ -56,6 +64,9 @@ module.exports = function(app){
         }
         if(filter.toBudget){
             redirectURL = redirectURL + "&toPrice=" + filter.toBudget;
+        }
+        if(filter.fromBudget){
+            redirectURL = redirectURL + "&fromPrice=" + filter.fromBudget;
         }
         res.redirect(redirectURL);
     });

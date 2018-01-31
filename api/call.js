@@ -54,6 +54,15 @@ module.exports = function(app){
         let sorting = '}';
         if(sortOrder){
             sorting = ', "sort":[{"field":"price","sortOrder":"' + sortOrder + '"}]}';
+            if(sortOrder == 'POP'){
+                sortOrder = 'DESC';
+                sorting = ', "sort":[{"field":"listingPopularityScore","sortOrder":"' + sortOrder + '"}]}';
+            }
+            else if(sortOrder == 'RAT'){
+                sortOrder = 'DESC';
+                sorting = ', "sort":[{"field":"listingSellerCompanyScore","sortOrder":"' + sortOrder + '"}]}';
+            }
+            
         }
         
         //BHK Filter
@@ -69,7 +78,7 @@ module.exports = function(app){
         let budgetFilter = ''
         if(queryData.fromPrice || queryData.toPrice){
             let from = queryData.fromPrice || 0;
-            let to = queryData.toPrice;
+            let to = queryData.toPrice || 1000000000;
             budgetFilter = ',{"range":{"price":{"from":'+ from + ', "to":' + to + '}}}';
         }
         

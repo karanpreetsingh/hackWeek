@@ -68,6 +68,8 @@ function convertToMonth(num){
     <div class = "card">
         <a href = "http://makaan.com/<%= item.listing.resaleURL %>">
             <div class = "card-image">
+                <span class = "left"><i class = "fa fa-arrow-left"></i></span>
+                <span class = "right"><i class = "fa fa-arrow-right"></i></span>
                 <img src = "<%= item.listing.mainImageURL %>">
                 <div class = "image-offset">
                     <div class = "agent-image">
@@ -91,7 +93,7 @@ function convertToMonth(num){
                     </div>
                     <div class = "agent-rating">
                             <span class = "rating"><%= parseFloat(item.listing.companySeller.company.score/2).toFixed(1) %></span>
-                            <div class = "reviews"><%= item.listing.sellerCallRatingCount %> Reviews</div>
+                            <div class = "reviews"><%= item.listing.sellerCallRatingCount %> Ratings</div>
                     </div>
                 </div>
             </div>

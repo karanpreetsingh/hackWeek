@@ -1,17 +1,73 @@
+<% function convert(value){ 
+    value = value.toString();
+    if(value.length == 6) return value.substr(0, 1) + '.' + value.substr(1, 1) + ' L';
+    else if(value.length == 7) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' L';
+    else if(value.length == 8) return value.substr(0, 1) + '.' + value.substr(2, 1) + ' Cr';
+    else if(value.length >= 9) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' Cr';
+    return value;
+ } 
 
-    <% function convert(value){ 
-        value = value.toString();
-        if(value.length == 6) return value.substr(0, 1) + '.' + value.substr(1, 1) + ' L';
-        else if(value.length == 7) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' L';
-        else if(value.length == 8) return value.substr(0, 1) + '.' + value.substr(2, 1) + ' Cr';
-        else if(value.length >= 9) return value.substr(0, 2) + '.' + value.substr(2, 1) + ' Cr';
-        return value;
-     } %>
+ function capitalize(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+ 
+function floor(fl){
+    if(fl == 1) return fl + 'st';
+    if(fl == 2) return fl + 'nd';
+    if(fl == 3) return fl + 'rd';
+    else return fl + 'th';
+}
 
-    <a href = "http://makaan.com/<%= item.listing.resaleURL %>">
+function strip(string){
+    return string.replace(/_/g, ' ');
+}
+
+function convertToMonth(num){
+    let month = {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "Septembet",
+        10: "October",
+        11: "November",
+        12: "December"
+    };
+    return month[num];
+}
+
+%>
+
+<div id="modal<%= item.listing.propertyId %>" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close" onclick = "closeModal(<%= item.listing.propertyId %>)">&times;</span>
+          <div class = "modal-area">
+              <span class = "modal-image">
+                    <% if(item.listing.companySeller.user.profilePictureURL){ %>
+                        <img src = "<%= item.listing.companySeller.user.profilePictureURL %>">
+                    <% }else{ %>
+                        <img src = "http://afsti.org/event_photos/default.png">
+                    <% } %>
+                </span>
+                <span class = "modal-text">
+                    <%= capitalize(item.listing.companySeller.company.name) %>
+                    <span class = "rating"><%= parseFloat(item.listing.companySeller.company.score/2).toFixed(1) %></span>
+                </span>
+            <span class = "modal-phone"><%= item.listing.companySeller.user.contactNumbers[0].contactNumber.substring(0, 2) %>********<%= item.listing.companySeller.user.contactNumbers[0].contactNumber.substring(item.listing.companySeller.user.contactNumbers[0].contactNumber.length-2) %></span>
+          </div>
+          <a href = "http://makaan.com/<%= item.listing.resaleURL %>"><button class = "default modal-button">Contact Seller</button></a>
+        </div>
+      
+</div>
     <div class = "card">
+        <a href = "http://makaan.com/<%= item.listing.resaleURL %>">
             <div class = "card-image">
-                
                 <img src = "<%= item.listing.mainImageURL %>">
                 <div class = "image-offset">
                     <div class = "agent-image">
@@ -21,13 +77,21 @@
                             <img src = "http://afsti.org/event_photos/default.png">
                         <% } %>
                     </div>
-                    <div class = "agent-info">
-                        <div class = "agent-name">
-                            <%= item.listing.companySeller.user.fullName %>
-                        </div>
-                        <div class = "agent-type">
-                                AGENT
+                    <div class = "agent">
+                        <div class = "agent-info">
+                            <div class = "agent-name">
+                                <%= capitalize(item.listing.companySeller.company.name) %>
                             </div>
+                            <div class = "agent-type">
+                                    <% if(item.listing.listingSellerTransactionStatuses) { %>
+                                    <span class = "agent-status"><%= strip(item.listing.listingSellerTransactionStatuses[0]) %></span> | AGENT
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "agent-rating">
+                            <span class = "rating"><%= parseFloat(item.listing.companySeller.company.score/2).toFixed(1) %></span>
+                            <div class = "reviews"><%= item.listing.sellerCallRatingCount %> Reviews</div>
                     </div>
                 </div>
             </div>
@@ -37,6 +101,9 @@
                             <%= item.listing.property.bedrooms %> BHK <%= item.listing.property.unitType %>
                         <% }else{ %>
                             Residential <%= item.listing.property.unitType %>
+                        <% } 
+                           if(item.listing.property.project.builder.displayName){ %>
+                            <span class = "heading-sidekick">in <%= item.listing.property.project.builder.displayName %> <%= item.listing.property.project.name %></span>
                         <% } %>
                     </div>
                     <div class = "address">
@@ -57,9 +124,17 @@
                                         </div>
                             </div> 
                             <div class = "status">
-                                <%= item.listing.listingCategory %>
+                                <% if(item.listing.constructionStatusId == 2){ %>
+                                    Ready to Move
+                                <% } 
+                                  else if(item.listing.constructionStatusId == 1){ %>
+                                    Under Construction
+                                <% } else {%>
+                                    Not Available
+                                <% } %>
+                                
                                 <div class = "status-sidekick">
-                                        Listing Category
+                                        Construction Status
                                     </div>
                             </div> 
                             <div class = "href">
@@ -68,19 +143,36 @@
                     </div>
                     <hr class = "card-separator">     
                     <div class = "options">
-                            <%= item.listing.property.bedrooms %> Bathrooms | <span class = "condition">
+                            <% if((new Date(item.listing.property.project.possessionDate)) != "Invalid Date" ){ %>
+                                <%
+                                    let d = new Date(item.listing.property.project.possessionDate) 
+                                %>
+                                Possession by <%= convertToMonth(d.getMonth()) %> <%= d.getFullYear() %> 
+                                <% }else if(item.listing.minConstructionCompletionDate){ %>
+                                    <% let Cd = new Date(item.listing.minConstructionCompletionDate);
+                                        let sanityCheck = (new Date()).getFullYear() - Cd.getFullYear(); %>
+                                        <%= sanityCheck %> year(s) old
+                                <% }else{ %>
                                     New
+                                <% } %> | 
+                                <%= item.listing.property.bedrooms %> Bathrooms <span class = "condition">
+                                        <% if(item.listing.floor) { %>
+                                        | <%= floor(item.listing.floor) %> of <%= item.listing.totalFloors %> Floors
+                                        <% } %>
                                 </span>
                                 <div class = "advert">
                                         <%= item.listing.description.substr(0, 70) %>...<span class = "link">More</span>
                                 </div>
                     </div>
+                </a>    
                     <div class = "contact">
-                        <button class = "default">Contact Seller</button>
+                        <button class = "default" onclick = "openModal(<%= item.listing.propertyId %>)">View Phone</button></a><button class = "default">Contact Seller</button>
                     </div>
             </div>
             
         </div>
-</a>        
+
+        
+    
         
 

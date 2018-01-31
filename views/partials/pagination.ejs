@@ -16,15 +16,18 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    var currentPage = getParameterByName('page');
+    var currentPage = parseInt(getParameterByName('page'));
     let bullets = document.getElementsByClassName('page');
     let currentURL = window.location.href;
     let v = currentURL.indexOf('page') + 5;
 
-    bullets[0].setAttribute('href', (currentURL.substr(0, v) + (currentPage-1) + currentURL.substr(v+1, currentURL.length)));
+    let idx = parseInt(currentPage.toString.length);
+
+
+    bullets[0].setAttribute('href', (currentURL.substr(0, v) + (currentPage-1) + currentURL.substr(v+idx, currentURL.length)));
     
     for(let i = 1; i <= 10; i++){
-        let url = currentURL.substr(0, v) + i + currentURL.substr(v+1, currentURL.length);
+        let url = currentURL.substr(0, v) + i + currentURL.substr(v+idx, currentURL.length);
         bullets[i].innerHTML = i;
         
         bullets[i].setAttribute('href', url);
@@ -32,6 +35,8 @@
             bullets[i].classList.add('active');
         }
     }
+
+    bullets[11].setAttribute('href', (currentURL.substr(0, v) + (parseInt(currentPage)+1) + currentURL.substr(v+idx, currentURL.length)));
 
     
 </script>

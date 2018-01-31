@@ -20,17 +20,9 @@
         <div class = "applied-filters">
                 <% include ../partials/appliedFilters %>
         </div>
-        
         <div class = "results">
-                <div class = "count"><b><%= data.totalCount %></b> Properties in <%= data.facetedResponse.items[0].listing.property.project.locality.suburb.city.label   %></div>
-                <% data.facetedResponse.items.forEach((item) => { %>
-                    <% include ../partials/results %>
-                <% })%>
-                <div class = "pagination">
-                    <% include ../partials/pagination %>
-                </div>
+                No records found
         </div>
-        
     </div>
     <% include ../partials/functions %>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

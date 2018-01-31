@@ -3,7 +3,6 @@ const request = require('request');
 const bodyParser = require('body-parser');
 
 module.exports = function(app){
-
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({     
         extended: true
@@ -12,7 +11,6 @@ module.exports = function(app){
     app.get('/', function(req, res){
         res.redirect('/results?page=1&city=11');
     });
-
 
     app.post('/search', function(req, res){
         const city = (req.body.search).toLowerCase();
@@ -24,10 +22,12 @@ module.exports = function(app){
         }
 
         let id = cityMap[city];;
+        
         if(!cityMap[city]){
             id = 11;
         }
-        let url = '/results?page=1&city='+id;
+
+        let url = '/filter?page=1&city='+id;
         res.redirect(url);
     });
     
@@ -84,10 +84,17 @@ module.exports = function(app){
         let remaining = '&includeNearbyResults=false&includeSponsoredResults=false&sourceDomain=Makaan';
         
         let urls = base_url + selectors + filters + paging + sorting + remaining;
-            
+
+        // console.log(urls);
         request(urls, function(err, resp, body) {
+            if(!body){
+                res.render('pages/404');
+            }
             body = JSON.parse(body);
             let requiredValues = body.data[0];
+            if(requiredValues.facetedResponse.items.length == 0){
+                res.render('pages/404');
+            }
             res.render('pages/index', {data: requiredValues});
         });
     })

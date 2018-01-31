@@ -3,7 +3,8 @@ const app = express();
 
 const figlet = require('figlet');
 
-const api = require('./api/route')(app);
+const api = require('./api/call')(app);
+const filters = require('./api/filter')(app);
 
 const PORT = 3000;
 

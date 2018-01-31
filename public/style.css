@@ -9,6 +9,10 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+img:hover{
+    filter: grayscale(100%);
+}
+
 .header{
     position: fixed;
     height: 50px;
@@ -24,6 +28,14 @@ body{
     align-items: center;
     border-right: 1px solid #ecf0f1;
     font-size: 14px;
+}
+
+.agent-status{
+    color: #fba511;
+}
+.heading-sidekick{
+    color: rgb(143, 143, 143);
+    font-size: 0.8em;
 }
 
 .logo{
@@ -59,6 +71,11 @@ body{
     border: 0px;
 }
 
+.applied-filters{
+    margin-top: 70px;
+    padding: 20px;
+}
+
 .app{
     padding: 0 10px;
     cursor: pointer;
@@ -74,6 +91,86 @@ body{
     display: flex;
 }
 
+.filter-item{
+    background-color: #F62459;
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 40px;
+    margin-left: 10px;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-area{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+.modal-image img{
+    height: 64px;
+    width: 64px;
+    padding: 5px;
+    border: 1px solid #BDC3C7;
+    border-radius: 100%;
+}
+
+.modal-text{
+    padding: 10px;
+    font-size: 16px;
+}
+
+.modal-phone{
+    padding: 10px;
+    border: 1px dashed #F62459;
+}
+
+.modal-button{
+    margin: 20px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    min-width: 350px;
+    width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.filter-item .fa{
+    padding-left: 5px;
+    cursor: pointer;
+}
+
 .result-content{
     border-right: 1px solid #ecf0f1; 
     flex-direction: column;
@@ -82,20 +179,20 @@ body{
     /* display: flex; */
     position: absolute;
     top: 50px;
-    width: 850px;
+    width: 900px;
 }
 
 .results{
     display: flex;
     height: 100%;
-    padding: 80px 50px 0 50px;
+    padding: 20px 50px 0 50px;
     flex-direction: column;
     justify-content: center;
 }
 
 .card{
     display: flex;
-    width: 700px;
+    width: 740px;
     padding: 20px;
     margin: 20px;
     box-sizing: content-box;
@@ -108,12 +205,12 @@ body{
 }
 
 .card-image{
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .card-image img{
     height: 170px;
-    width: 260px;
+    width: 280px;
 }
 
 .card-content{
@@ -202,21 +299,47 @@ body{
 
 .image-offset{
     display: flex;
+    justify-content: space-between;
 }
 
 .agent-type{
     color: #BDC3C7;
+    font-size: 10px;
+}
+
+.agent{
+    display: flex;
+    justify-content: space-around;
+}
+
+.agent-name{
     font-size: 12px;
 }
 
+.rating{
+    background-color: #20a255;;
+    padding: 2px;
+    font-size: 12px;
+    border-radius: 10%;
+}
+
+.reviews{
+    font-size: 10px;
+    color: #BFBFBF;
+}
+
+.agent-rating{
+    text-align: right;
+}
+
 .agent-info{
-    padding: 0 0 0 20px;
+    padding: 0 0 0 10px;
     font-size: 14px;
 }
 
 .agent-image img{
-    height: 44px;
-    width: 44px;
+    height: 34px;
+    width: 34px;
     border: 1px solid #ecf0f1;
 }
 
@@ -274,6 +397,10 @@ a{
     color: #F62459;
 }
 
+.sort .icon{
+    font-size: 25px;
+}
+
 .filter{
     justify-content: space-between;
 }
@@ -294,6 +421,7 @@ a{
     border: 2px solid #F62459;
     border-radius: 40px;
     padding: 10px;
+    margin-right: 10px;
     color: #F62459;
     text-align: center;
     text-overflow: clip;
@@ -315,6 +443,14 @@ a{
 .item-right .icon{
     color: #F62459;
     padding: 0 10px;
+}
+
+.sort-content{
+    font-size: 12px;
+}
+
+#sort-cat{
+    color: #F62459;
 }
 
 .dropdown-bedroom-filter{
@@ -360,6 +496,21 @@ a{
 
 @media screen and (max-width : 600px) {
     /* Styles */
+    .modal-content{
+        margin-top: 250px;
+    }
+    .applied-filters{
+        margin-top: 180px;
+    }
+
+    .filter{
+        height: 150px;
+    }
+
+    .item-left{
+        flex-direction: column;
+        padding: 20px;
+    }
 
     .sidebar{
         display: none;
@@ -397,6 +548,7 @@ a{
     .app{
         display: none;
     }
+
     .search{
         width: 100px;
     }

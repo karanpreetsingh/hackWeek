@@ -5,81 +5,31 @@
     <div class = "item bedroom-filter">
         Bedrooms <span class = "icon"><i class = "fa fa-angle-down"></i></span>
         <div class = "dropdown-bedroom-filter visible">
-            <div class = "dropdown-item"><a href = "#" id = "one">1 BHK</a></div>
-            <div class = "dropdown-item"><a href = "#" id = "two">2 BHK</a></div>
-            <div class = "dropdown-item"><a href = "#" id = "three">3 BHK</a></div>
-            <div class = "dropdown-item"><a href = "#" id = "four">3+ BHK</a></div>
+            <div class = "dropdown-item"><a href = "/filter?bhk=1" id = "one">1 BHK</a></div>
+            <div class = "dropdown-item"><a href = "/filter?bhk=2" id = "two">2 BHK</a></div>
+            <div class = "dropdown-item"><a href = "/filter?bhk=3" id = "three">3 BHK</a></div>
+            <div class = "dropdown-item"><a href = "/filter?bhk=4" id = "four">3+ BHK</a></div>
         </div>
     </div>
     <div class = "item budget">
             Budget <span class = "icon"><i class = "fa fa-angle-down"></i></span>
             <div class = "dropdown-budget-filter visible">
-                <div class = "dropdown-item"><a href = "#" id = "price1">₹ 50,000</a></div>
-                <div class = "dropdown-item"><a href = "#" id = "price2">₹ 1,00,000</a></div>
-                <div class = "dropdown-item"><a href = "#" id = "price3">₹ 10,00,000</a></div>
-                <div class = "dropdown-item"><a href = "#" id = "price4">₹ 1,00,00,000</a></div>
-                <div class = "dropdown-item"><a href = "#" id = "price5">₹ 10,00,00,000</a></div>
+                <div class = "dropdown-item"><a href = "/filter?toBudget=100000" id = "price2">₹ 1,00,000</a></div>
+                <div class = "dropdown-item"><a href = "/filter?toBudget=1000000" id = "price3">₹ 10,00,000</a></div>
+                <div class = "dropdown-item"><a href = "/filter?toBudget=10000000" id = "price4">₹ 1,00,00,000</a></div>
+                <div class = "dropdown-item"><a href = "/filter?toBudget=100000000" id = "price5">₹ 10,00,00,000</a></div>
             </div>
-        </div>
-</div>
-
-<div class = "item-right sort">
-    <span class = "icon"><i class = "fa fa-arrow-down"></i></span> Sort by
-    <div class = "dropdown-sort-filter visible">
-        <div class = "dropdown-item"><a id = "relevance" href = "#">Relevance</a></div>
-        <div class = "dropdown-item"><a id = "asc" href = "#">Price: Low to High</a></div>
-        <div class = "dropdown-item"><a id = "desc" href = "#">Price: High to Low</a></div>
+    </div>
+    <div class = "item resetClass">
+        <a href = "/filter?remove=all" id = "reset">Reset</a>
     </div>
 </div>
 
-<script>
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-    
-    document.getElementById('relevance').setAttribute('href', window.location.href.split('?')[0] + '?page='+getParameterByName('page') + '&city='+getParameterByName('city'));
-    url = window.location.href.split('?')[0] + '?page=1&sorted=ASC';
-    if(getParameterByName('rental')){
-        url += '&rental=true';   
-    }
-    if(getParameterByName('bhk')){
-        url = url + '&bhk=' + getParameterByName('bhk');
-    }
-    url = url + '&city=' + getParameterByName('city');
-    document.getElementById('asc').setAttribute('href', url);
-    url = window.location.href.split('?')[0] + '?page=1&sorted=DESC';
-    if(getParameterByName('rental')){
-        url += '&rental=true';   
-    }
-    if(getParameterByName('bhk')){
-        url = url + '&bhk=' + getParameterByName('bhk');
-    }
-
-    url = url + '&city=' + getParameterByName('city');
-    document.getElementById('desc').setAttribute('href', url);
-    
-    
-
-    url = window.location.href.split('?')[0] + '?page=1';
-    if(getParameterByName('rental')){
-        url += '&rental=true';
-    }
-    url = url + '&city=' + getParameterByName('city');
-    document.getElementById('one').setAttribute('href', url+'&bhk=1')
-    document.getElementById('two').setAttribute('href', url+'&bhk=2')
-    document.getElementById('three').setAttribute('href', url+'&bhk=3')
-    document.getElementById('four').setAttribute('href', url+'&bhk=4')
-
-    document.getElementById('price1').setAttribute('href', url+'&toPrice=10000')
-    document.getElementById('price2').setAttribute('href', url+'&toPrice=100000')
-    document.getElementById('price3').setAttribute('href', url+'&toPrice=1000000')
-    document.getElementById('price4').setAttribute('href', url+'&toPrice=10000000')
-    document.getElementById('price5').setAttribute('href', url+'&toPrice=100000000')    
-
-</script>
+<div class = "item-right sort">
+    <span class = "icon"><i class = "fa fa-arrow-down"></i></span> <span class = "sort-content"><div>Sorted by</div><div id = "sort-cat">Relevance</div></span>
+    <div class = "dropdown-sort-filter visible">
+        <div class = "dropdown-item"><a id = "relevance" href = "/filter?sorted=REL">Relevance</a></div>
+        <div class = "dropdown-item"><a id = "asc" href = "/filter?sorted=ASC">Price: Low to High</a></div>
+        <div class = "dropdown-item"><a id = "desc" href = "/filter?sorted=DESC">Price: High to Low</a></div>
+    </div>
+</div>

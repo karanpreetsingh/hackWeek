@@ -22,6 +22,11 @@ $('.bedroom-filter').click(function(){
 });
 
 $('.sort').click(function(){
+    position = $('.sort').position();
+    $('.dropdown-sort-filter').css('position', 'absolute');
+    $('.dropdown-sort-filter').css('top', 49);
+    $('.dropdown-sort-filter').css('left', position.left);
+
     $('.dropdown-sort-filter').toggleClass('visible');
 });
 
@@ -35,18 +40,82 @@ $('.results').click(function(){
     $('.dropdown-sort-filter').addClass('visible');
 })
 
-
-
 let position = $('.bedroom-filter').position();
 $('.dropdown-bedroom-filter').css('top', 49);
 $('.dropdown-bedroom-filter').css('left', position.left);
-
-position = $('.sort').position();
-$('.dropdown-sort-filter').css('position', 'absolute');
-$('.dropdown-sort-filter').css('top', 49);
-$('.dropdown-sort-filter').css('left', position.left);
 
 position = $('.budget').position();
 $('.dropdown-budget-filter').css('position', 'absolute');
 $('.dropdown-budget-filter').css('top', 49);
 $('.dropdown-budget-filter').css('left', position.left);
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var sortCat = document.getElementById('sort-cat');
+if(getParameterByName('sorted') == "ASC"){
+    sortCat.innerHTML = "Price: Low to High";
+}else if(getParameterByName('sorted') == "DESC"){
+    sortCat.innerHTML = "Price: High to Low";
+}else{
+    sortCat.innerHTML = "Relevance";
+}
+
+if(getParameterByName('rental')){
+    document.getElementsByClassName('content')[0].innerHTML = "Rent";
+    $('.buy').removeClass('selected');
+    $('.rent').addClass('selected');
+}else{
+    document.getElementsByClassName('content')[0].innerHTML = "Buy";
+    $('.buy').addClass('selected');
+    $('.rent').removeClass('selected');
+}
+
+body = '';
+    
+    if(getParameterByName('city')){
+        id = {
+            11: "Gurgaon",
+            18: "Mumbai",
+            16: "Kolkata"
+        }
+        body += '<span class = "filter-item">' + 'City' + ': '+ id[getParameterByName('city')] + '</span>';
+    }
+
+    if(getParameterByName('bhk')){
+        body += '<span class = "filter-item">' + 'BHKs' + ': '+ getParameterByName('bhk') + '<a href = "/filter?remove=bhks"><i class="fa fa-times" aria-hidden="true"></i></a></span>';    
+    }
+
+    if(getParameterByName('toPrice')){
+        body += '<span class = "filter-item">' + 'Budget: Maximum' + ': '+ getParameterByName('toPrice') + '<a href = "/filter?remove=toPrice"><i class="fa fa-times" aria-hidden="true"></i></a></span>';    
+    }
+
+    document.getElementById('main').innerHTML = body;
+
+    
+
+// Get the button that opens the modal
+
+
+function openModal(id){
+    document.getElementById('modal'+id).style.display = 'block';
+}
+
+function closeModal(id){
+    document.getElementById('modal'+id).style.display = 'none';
+}
+
+let modal = document.getElementsByClassName('modal')[0];
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} 

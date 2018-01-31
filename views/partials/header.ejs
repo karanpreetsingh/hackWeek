@@ -8,8 +8,8 @@
         <i class = "fa fa-angle-down"></i>
     </span>
     <div class = "dropdown visible">
-        <div class = "dropdown-item buy selected"><a id = "buy" href = "/results?page=1">Buy</a></div>
-        <div class = "dropdown-item rent"><a id = "rent" href = "/results?page=1&rental=true">Rent</a></div>
+        <div class = "dropdown-item buy selected"><a id = "buy" href = "/filter?listing=1">Buy</a></div>
+        <div class = "dropdown-item rent"><a id = "rent" href = "/filter?listing=2">Rent</a></div>
     </div>
 </div>
 
@@ -28,26 +28,3 @@
         <a href = "https://www.makaan.com/download-mobileapp">Download App</a>
     </span>
 </div>
-
-<script>
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-    document.getElementById('buy').setAttribute('href', '/results?page=1&city=' + getParameterByName('city'));
-    document.getElementById('rent').setAttribute('href', '/results?page=1&rental=true&city=' + getParameterByName('city'));
-
-    let param = getParameterByName('rental');
-    if(param){
-        document.getElementsByClassName('content')[0].innerHTML = "Rent";
-        document.getElementsByClassName('buy')[0].classList.remove('selected');
-        document.getElementsByClassName('rent')[0].classList.add('selected');
-    }
-
-</script>

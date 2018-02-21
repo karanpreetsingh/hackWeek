@@ -132,7 +132,7 @@ window.onclick = function(event) {
 
 function myMap() {
     var mapOptions = {
-        center: new google.maps.LatLng(51.5, -0.12),
+        center: new google.maps.LatLng(28.4595, 77.0266),
         zoom: 10,
         mapTypeId: 'roadmap'
     }

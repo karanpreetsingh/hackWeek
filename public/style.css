@@ -9,6 +9,38 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+#map{
+    width: 380px;
+    position: absolute;
+    right: 0;
+    z-index: -10;
+    top: 50px;
+    height: 100%;
+}
+
+#iterny{
+    position: absolute;
+    right: 140px;
+    top: 70px;
+    z-index: 100;
+        cursor: pointer;
+        border: 2px solid #F62459;
+        border-radius: 40px;
+        padding: 10px;
+        margin-right: 10px;
+        color: rgba(255,255,255,1);
+        text-align: center;
+        text-overflow: clip;
+        letter-spacing: 1px;
+        background: #F62459;
+        transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+}
+      
+      #iterny:hover {
+        background: #fff;
+        color: #F62459;
+      }
+    
 
 
 .left{

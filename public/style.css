@@ -13,6 +13,12 @@ body{
     position: fixed;
     left: calc(100% - 380px);
 }
+#map-buttons{
+    position: absolute;
+    bottom: 10px;
+    z-index: 20;
+    left: calc(50% - 50px);
+}
 
 #map{
     width: 380px;
@@ -634,6 +640,25 @@ a{
     justify-content: flex-end;
     position: relative;
 }
+.default-btn {
+    cursor: pointer;
+    border: 2px solid #F62459;
+    border-radius: 40px;
+    padding: 10px;
+    margin-right: 10px;
+    color: #F62459;
+    text-align: center;
+    text-overflow: clip;
+    letter-spacing: 1px;
+    background: #fff;
+    transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
+  }
+  
+  .default-btn:hover {
+    color: rgba(255,255,255,1);
+    background: #F62459;
+  }
+ 
 
 .default {
     cursor: pointer;

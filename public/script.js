@@ -12,8 +12,7 @@ var bookmarks = {};
         if(value.split("; bookmarks=").length == 1){
             document.cookie = "bookmarks={}";
         }
-        console.log(document.cookie);
-        console.log(value.split("; bookmarks=").length);
+        
             if(value.split("; bookmarks=")[1].slice(1,-1)){
                 bookmarks = JSON.parse(value.split("; bookmarks=")[1]);
                 $('#overlay').css('display', 'none');

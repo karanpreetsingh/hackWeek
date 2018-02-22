@@ -9,14 +9,86 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.sidebar{
+    position: fixed;
+    left: calc(100% - 380px);
+}
+
 #map{
     width: 380px;
-    position: absolute;
-    right: 0;
     top: 50px;
-    z-index: 11;
-    height: 400px;
+    z-index: 1;
+    height: calc(100vh - 50px);
+}
+
+.sidebar-card{
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    padding: 10px;
+}
+
+.sidebar-img{
+    height: 60px;
+    width: 90px;
+}
+
+.sidebar-card:hover{
+    box-shadow: 0px 0px 5px 5px #ececec;
+}
+
+.menu-btn{
+    position: absolute;
+    left: 10px;
+    z-index: 2;
+    cursor: pointer;
+    font-size: 12px;
+    background: #fff;
+    padding: 5px;
+    border: 1px solid black;
+    top: 55px;
+}
+
+.menu-btn-2{
+    position: absolute;
+    left: 120px;
+    z-index: 2;
+    cursor: pointer;
+    font-size: 12px;
+    background: #fff;
+    padding: 5px;
+    border: 1px solid black;
+    top: 55px;
+}
+
+.menu-content{
+    position: absolute;
+    top: 95px;
+    left: 500px;
+    padding: 15px;
+    box-shadow: 5px 10px;
+    width: 380px;
     height: 100%;
+    z-index: 20;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.menu-content-2{
+    position: absolute;
+    top: 95px;
+    left: 500px;
+    padding: 15px;
+    box-shadow: 5px 10px;
+    width: 380px;
+    height: 100%;
+    z-index: 20;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.expanded{
+    left: 10px;
 }
 
 .acc-container{
@@ -74,16 +146,18 @@ body{
     right: 0;
     position: absolute;
     z-index: 12;
-    height: 400px;
-    background: rgb(0, 0, 0, 0.8);
+    height: calc(100vh - 50px);
+    top: 50px;
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
-    color: rgb(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     align-items: center;
     justify-content: center;
     font-size: 16px;
     font-family: 'Open Sans';
     padding: 15px;
 }
+
 #iterny{
     display: none;
     position: absolute;
@@ -328,6 +402,16 @@ body{
     flex-direction: row;
 }
 
+.maps-addon{
+    position:absolute;
+    top:10px;
+    left:10px;
+    /*color: green;*/
+}
+.property-addon{
+    display: none;
+}
+
 .card:hover{
     box-shadow: 0px 0px 5px 5px #ececec;
     cursor: pointer;
@@ -441,6 +525,10 @@ body{
     justify-content: space-around;
 }
 
+.menu{
+
+}
+
 .agent-name{
     font-size: 12px;
 }
@@ -544,6 +632,7 @@ a{
 .contact{
     display: flex;
     justify-content: flex-end;
+    position: relative;
 }
 
 .default {
